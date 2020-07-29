@@ -15,7 +15,7 @@ static void child()
 
 static void caller(pid_t pid_c)
 {
-    printf("expect as parent process, is %d and child expects as %d", getpid(), pid_c);
+    printf("expect as parent process, is %d and child expects as %d\n", getpid(), pid_c);
     exit(EXIT_SUCCESS);
 }
 
