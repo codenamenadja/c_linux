@@ -51,3 +51,25 @@ or update stream via the stream's underlying write function.
 discards any buffered data which has been fetched from underlying file but not consumed by the application.
         - consumed means like read and fflushed.
  
+___
+
+## 02_process_scheduling
+
+1. multi process stat Program
+
+    - What to work
+        1. what process is in progress at specific point
+        2. measure progresses of each process
+
+    - SPEC
+        - cmd line parameter(n, total, resol)
+            1. n: count of process work on same cpu.
+            2. total: time of program running(in ms)
+            3. resol: data collecting interval(in ms)
+    - procedure
+        1. start n of processes.
+        2. each processes works like,
+            - use cpu time for total ms-time and exit
+            - for each use of resol ms-time in total ms-time
+                - record their pid, program running time(in ms) and percentage of work progress.
+            
