@@ -1,6 +1,7 @@
 ## 01_process
 
 - fork: ``pid_t fork(void)``
+    - start from parent process's code progress. copy all things to completly different memspace.
     - desc: fork create new process __by duplicating the calling process.__  
     new process is referred as ``child process``.  
     child prcess and parent process run in seperatre memory spaces.  
@@ -13,3 +14,5 @@
             - includes, states of mutexes, condition variables, other pthreads object.
         - after fork call in mulitithreaded program, child cand safely call only async-signal-afe functions,  
 until such time as it calls execve
+
+- execve: ``
