@@ -26,7 +26,7 @@ via ``exit()`` or via ``return`` from the program's ``main()``
         - FAILURE: non zero
 
 3. ``on_exit()`` // sunos official
-    - ``int on_exit(void (*function)(int , void *), void *arg);//<stdlib.h>``
+    - ``int on_exit(void (*function)(int , void *), void *arg);// <stdlib.h>``
  
     - DESC:
         registers given fuction like wise.  this function is not come from glibc
@@ -47,6 +47,21 @@ automatically deleted when is closed or program terminates.
             - NULL: if a unique filename cannot be gneratred or cannot be opened.
 
 5. ``_exit()`` and ``_Exit()``
-    1. ``void _exit(int status);//<unistd.h>``
-    2. ``void _Exit(int status);//<stdlib.h>``
-    
+    - ``void _exit(int status);//<unistd.h>``  ``void _Exit(int status);//<stdlib.h>``
+    - DESC:
+        ``_exit()`` terminates the calling process _"imediately"_.  
+beloning fildescriptors are closed.  
+children of process are ingerited by ``init(1)``  
+process's parent is sent a SIGCHLD signal  
+value ``status & 0377`` is returns to parent process, and value can be collected using one of the ``wait()``family of calls.  
+function ``_EXIT()`` is eq to ``_exit()``
+
+    - RETURNS:
+        NO return
+
+    ### SIGCHILD
+
+    > when process terminates, kernel sends SIGCHILD signal to parent process.  
+    > default, do nothing on this signal.  
+    > but if to use ``signal()`` or ``sigaction()`` can handle the signal. 
+

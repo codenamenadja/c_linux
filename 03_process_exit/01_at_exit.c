@@ -12,8 +12,9 @@ int main(void)
     long    a;
     int     i;
 
+    // get Max count of registering functions from system config
     a = sysconf(_SC_ATEXIT_MAX);
-    printf("ATEXIT_MAX = %ld\n", a);
+    printf("max registerable functions:ATEXIT_MAX = %ld\n", a);
 
     i = atexit(callback);
     if (i)
