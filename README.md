@@ -1,4 +1,4 @@
-## 01_process
+# 01_process
 
 - fork: MAKE PROCESS COPY AND EXECUTE BOTH, INHERITS .TEXT PROGRESS
     - ``pid_t fork(void)``
@@ -72,4 +72,18 @@ ___
             - use cpu time for total ms-time and exit
             - for each use of resol ms-time in total ms-time
                 - record their pid, program running time(in ms) and percentage of work progress.
-            
+
+    - TEST util
+        - ``taskset -c 0 ./<FILENAME> <n_process> <TOTAL_TIME> <INTERVAL>
+
+        - taskset program
+            - DESC: retrive the CPU affinity of a running process.
+            - MEANS: taskset may use ptrace to observe and control the execution of another process.
+             
+    - CONCLUSION
+        - when using single logical cpu, except io/bound work?  
+time slicing equals.
+        - after forks a process and main_process check spawned process right away,  
+it's easliy processed as pid not generated yet.  
+checking pid generated should work after a slight single work.
+    
