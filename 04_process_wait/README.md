@@ -6,7 +6,7 @@
 
 _``SIGCHLD``_ interrupts like asyncronously to parent process.
 
-- ``wait()``
+1. ``wait()``
     - ``pid_t wait (int *status);//<sys/wait.h>``
 
     - DESC:
@@ -27,8 +27,38 @@ _if not,_ these call blocks untils child changes state or signal handler interru
         - FAILURE:
             -1
 
-- wait_family
+    - wait_family
 
-    1. ``pid_t wait(int *wstatus)``
-    2. ``pid_t waitpid(pid_t pid, int *wstatus, int options);``
-    3. ``int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options);``
+        1. ``pid_t wait(int *wstatus)``
+        2. ``pid_t waitpid(pid_t pid, int *wstatus, int options);``
+        3. ``int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options);``
+
+2. ``nice()``
+    - ``int nice(int inc); //<unistd.h>``
+    - DESC:
+        add int to nice value for alling thread.
+    - Nice value
+        range of nice value is +19(low priority) ~ -20(high priority).
+    - RETURNS
+        - SUCCESS:
+            new nice value
+        - FAILURE:
+            -1, and errno sets
+
+
+3. multi process stat Program with priority using ``nice()``
+
+    - What to work
+        1. running process limits to 2 only.
+        2. measure progresses of each process
+        3. one process nice with value 0, other 5.
+
+    - SPEC
+        - cmd line parameter(total, resol)
+            1. total: time of program running(in ms)
+            2. resol: data collecting interval(in ms)
+
+    - procedure
+        - after process generated,
+        - if process itself is second genrated one, set self nice as 5
+
